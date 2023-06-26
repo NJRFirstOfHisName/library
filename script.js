@@ -49,7 +49,7 @@ function displayBooks() {
     const toggle = document.querySelectorAll(".toggle");
     toggle.forEach((button) => {
         button.addEventListener('click', () => {
-            toggleRead();
+            toggleRead(button.getAttribute('data-index'));
     })})
 }
 
@@ -68,6 +68,7 @@ function addBookToLibrary() {
     myLibrary.push(book);
     addBookToDisplay(book);
     document.getElementById("new-book").reset();
+    displayBooks();
 }
 
 function addBookToDisplay(book) {
@@ -93,7 +94,8 @@ function addBookToDisplay(book) {
     read.appendChild(readText);
     let toggle = document.createElement('button');
     toggle.className = 'toggle';
-    toggle.innerText = "Switch"
+    toggle.innerText = "Switch";
+    toggle.dataset.index = book.index;
     read.appendChild(toggle);
     let remove = shelf.insertCell();
     let removeButton = document.createElement('button');
@@ -113,8 +115,10 @@ function toggleForm() {
     }
 }
 
-function toggleRead() {
-    alert('toggle click')
+function toggleRead(index) {
+    index = parseInt(index);
+    myLibrary[index].read = !myLibrary[index].read;
+    displayBooks();
 }
 
 function removeBook(index) {
