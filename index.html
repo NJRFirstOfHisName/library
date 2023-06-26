@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="./script.js" defer></script>
+    <title>My Library</title>
+</head>
+<body>
+    <div>
+        <table>
+            <thead>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Page Count</th>
+                <th>Read?</th>
+                <th>Remove?</th>
+            </thead>
+            <tbody id="library">
+
+            </tbody>
+        </table>
+        <button onclick="toggleForm()">NEW BOOK</button>
+        <form id="new-book" action="" style="display: none;">
+            <input type="text" placeholder="Title" name="title" id="title"><br>
+            <input type="text" placeholder="Author" name="author" id="author"><br>
+            <input type="number" placeholder="Number of pages" name="pages" id="pages"><br>
+            <p style="margin: 0">Have you read this book?</p>
+            <input type="radio" name="read" id="yes-read" checked>
+            <label for="yes-read">Yes</label>
+            <input type="radio" name="read" id="no-read">
+            <label for="no-read">No</label><br>
+            <button type="button" onclick="addBookToLibrary(); toggleForm()">Submit</button>
+        </form>
+    </div>
+</body>
+</html>
