@@ -22,16 +22,30 @@ let myLibrary = [
     }
 ];
 
-function Book(author, title, pages, read, index) {
-    this.author = author;
-    this.title = title;
-    this.pages = pages;
-    this.read = read;
-    this.index = index;
-    this.info = function() {
+class Book {
+    constructor(author, title, pages, read, index) {
+        this.author = author;
+        this.title = title;
+        this.pages = pages;
+        this.read = read;
+        this.index = index;
+    }
+
+    info = () => {
         return(title + " by " + author + ", " + pages + " pages, ");
     }
 }
+
+// function Book(author, title, pages, read, index) {
+//     this.author = author;
+//     this.title = title;
+//     this.pages = pages;
+//     this.read = read;
+//     this.index = index;
+//     this.info = function() {
+//         return(title + " by " + author + ", " + pages + " pages, ");
+//     }
+// }
 
 function displayBooks() {
     document.getElementById('library').innerHTML = '';
