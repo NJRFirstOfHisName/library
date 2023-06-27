@@ -71,12 +71,7 @@ function addBookToLibrary() {
     let title = document.getElementById("title").value;
     let author = document.getElementById("author").value;
     let pages = document.getElementById("pages").value;
-    let yes = document.getElementById("yes-read").checked;
-    if (yes) {
-        read = true;
-    } else {
-        read = false;
-    }
+    let read = document.getElementById("yes-read").checked;
     let index = myLibrary.length;
     const book = new Book(author, title, pages, read, index);
     myLibrary.push(book);
@@ -103,7 +98,7 @@ function addBookToDisplay(book) {
     if(book.read) {
         readText = document.createTextNode("Yes")
     } else {
-        readText = document.createTextNode("No")
+        readText = document.createTextNode("No ")
     }
     read.appendChild(readText);
     let toggle = document.createElement('button');
