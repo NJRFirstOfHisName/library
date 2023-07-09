@@ -1,4 +1,6 @@
-let myLibrary = [
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-use-before-define */
+const myLibrary = [
   {
     author: "JRR Tolkien",
     title: "Lord of the Rings",
@@ -31,9 +33,7 @@ class Book {
     this.index = index;
   }
 
-  info = () => {
-    return title + " by " + author + ", " + pages + " pages, ";
-  };
+  info = () => `${this.title} by ${this.author}, ${this.pages} pages, `;
 }
 
 // function Book(author, title, pages, read, index) {
@@ -47,13 +47,57 @@ class Book {
 //     }
 // }
 
+function addBookToDisplay(book) {
+  const library = document.getElementById("library");
+  const shelf = library.insertRow();
+  const title = shelf.insertCell();
+  const titleText = document.createTextNode(book.title);
+  title.appendChild(titleText);
+  const author = shelf.insertCell();
+  const authorText = document.createTextNode(book.author);
+  author.appendChild(authorText);
+  const pages = shelf.insertCell();
+  const pagesText = document.createTextNode(book.pages);
+  pages.appendChild(pagesText);
+  const read = shelf.insertCell();
+  read.className = "read";
+  let readText;
+  if (book.read) {
+    readText = document.createTextNode("Yes");
+  } else {
+    readText = document.createTextNode("No ");
+  }
+  read.appendChild(readText);
+  const toggle = document.createElement("button");
+  toggle.className = "toggle";
+  toggle.innerText = "Switch";
+  toggle.dataset.index = book.index;
+  read.appendChild(toggle);
+  const remove = shelf.insertCell();
+  const removeButton = document.createElement("button");
+  removeButton.className = "remove";
+  removeButton.innerText = "Remove";
+  removeButton.dataset.index = book.index;
+  remove.appendChild(removeButton);
+}
+
+function removeBook(index) {
+  const i = parseInt(index, 10);
+  myLibrary.forEach((book) => {
+    if (book.index === i) {
+      myLibrary.splice(i, 1);
+    }
+  });
+  displayBooks();
+}
+
 function displayBooks() {
   document.getElementById("library").innerHTML = "";
   let i = 0;
   myLibrary.forEach((book) => {
-    book.index = i;
+    this.index = i;
     addBookToDisplay(book);
-    i++;
+    i += 1;
   });
   const remove = document.querySelectorAll(".remove");
   remove.forEach((button) => {
@@ -70,50 +114,16 @@ function displayBooks() {
 }
 
 function addBookToLibrary() {
-  let title = document.getElementById("title").value;
-  let author = document.getElementById("author").value;
-  let pages = document.getElementById("pages").value;
-  let read = document.getElementById("yes-read").checked;
-  let index = myLibrary.length;
+  const title = document.getElementById("title").value;
+  const author = document.getElementById("author").value;
+  const pages = document.getElementById("pages").value;
+  const read = document.getElementById("yes-read").checked;
+  const index = myLibrary.length;
   const book = new Book(author, title, pages, read, index);
   myLibrary.push(book);
   addBookToDisplay(book);
   document.getElementById("new-book").reset();
   displayBooks();
-}
-
-function addBookToDisplay(book) {
-  var library = document.getElementById("library");
-  var shelf = library.insertRow();
-  let title = shelf.insertCell();
-  let titleText = document.createTextNode(book.title);
-  title.appendChild(titleText);
-  let author = shelf.insertCell();
-  let authorText = document.createTextNode(book.author);
-  author.appendChild(authorText);
-  let pages = shelf.insertCell();
-  let pagesText = document.createTextNode(book.pages);
-  pages.appendChild(pagesText);
-  let read = shelf.insertCell();
-  read.className = "read";
-  let readText;
-  if (book.read) {
-    readText = document.createTextNode("Yes");
-  } else {
-    readText = document.createTextNode("No ");
-  }
-  read.appendChild(readText);
-  let toggle = document.createElement("button");
-  toggle.className = "toggle";
-  toggle.innerText = "Switch";
-  toggle.dataset.index = book.index;
-  read.appendChild(toggle);
-  let remove = shelf.insertCell();
-  let removeButton = document.createElement("button");
-  removeButton.className = "remove";
-  removeButton.innerText = "Remove";
-  removeButton.dataset.index = book.index;
-  remove.appendChild(removeButton);
 }
 
 function toggleForm() {
@@ -127,18 +137,8 @@ function toggleForm() {
 }
 
 function toggleRead(index) {
-  index = parseInt(index);
-  myLibrary[index].read = !myLibrary[index].read;
-  displayBooks();
-}
-
-function removeBook(index) {
-  index = parseInt(index);
-  myLibrary.forEach((book) => {
-    if (book.index === index) {
-      myLibrary.splice(index, 1);
-    }
-  });
+  const i = parseInt(index, 10);
+  myLibrary[i].read = !myLibrary[i].read;
   displayBooks();
 }
 
