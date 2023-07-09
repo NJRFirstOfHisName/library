@@ -1,12 +1,12 @@
 th {
-    border: 1px solid black;
-    width: 150px;
+  border: 1px solid black;
+  width: 150px;
 }
 
 .toggle {
-    margin: 0 5px;
+  margin: 0 5px;
 }
 
 .fit {
-    width: fit-content;
+  width: fit-content;
 }
