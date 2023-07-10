@@ -36,16 +36,17 @@ class Book {
   info = () => `${this.title} by ${this.author}, ${this.pages} pages, `;
 }
 
-// function Book(author, title, pages, read, index) {
-//     this.author = author;
-//     this.title = title;
-//     this.pages = pages;
-//     this.read = read;
-//     this.index = index;
-//     this.info = function() {
-//         return(title + " by " + author + ", " + pages + " pages, ");
-//     }
-// }
+function checkValid() {
+  document.getElementById("submitBtn").addEventListener("click", () => {
+    const title = document.getElementById("title").value;
+    const author = document.getElementById("author").value;
+    const pages = document.getElementById("pages").value;
+    if (title && author && pages) {
+      addBookToLibrary();
+      toggleForm();
+    }
+  });
+}
 
 function addBookToDisplay(book) {
   const library = document.getElementById("library");

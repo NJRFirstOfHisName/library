@@ -20,29 +20,35 @@
         </thead>
         <tbody id="library"></tbody>
       </table>
-      <button onclick="toggleForm()">NEW BOOK</button>
+      <button onclick="toggleForm()" id="newBookBtn">NEW BOOK</button>
       <form id="new-book" action="" style="display: none">
-        <input type="text" placeholder="Title" name="title" id="title" /><br />
+        <input
+          type="text"
+          placeholder="Title"
+          name="title"
+          id="title"
+          required
+        /><br />
         <input
           type="text"
           placeholder="Author"
           name="author"
           id="author"
+          required
         /><br />
         <input
           type="number"
           placeholder="Number of pages"
           name="pages"
           id="pages"
+          required
         /><br />
         <p style="margin: 0">Have you read this book?</p>
-        <input type="radio" name="read" id="yes-read" checked />
+        <input type="radio" name="read" id="yes-read" required checked />
         <label for="yes-read">Yes</label>
-        <input type="radio" name="read" id="no-read" />
+        <input type="radio" name="read" id="no-read" required />
         <label for="no-read">No</label><br />
-        <button type="button" onclick="addBookToLibrary(); toggleForm()">
-          Submit
-        </button>
+        <button onclick="checkValid()" id="submitBtn">Submit</button>
       </form>
     </div>
   </body>
